@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anti Detect Browser — Free Multi-Profile Browser for Windows | Privacy Browser</title>
+<meta name="description" content="Free anti-detect browser for Windows. Run unlimited browser profiles, each with a unique fingerprint, its own cookies and proxy (HTTP/SOCKS5). Free alternative to Multilogin, GoLogin and AdsPower.">
+<meta name="keywords" content="anti detect browser, antidetect browser, free anti-detect browser, multi account browser, browser fingerprint, fingerprint spoofing, multilogin alternative, gologin alternative, adspower alternative, proxy browser, socks5 browser">
+<meta name="author" content="Ardi Birawinata">
+<link rel="canonical" href="https://ardibirawinata.github.io/Anti-detect-browser/">
+<link rel="icon" type="image/png" href="logo.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anti Detect Browser — Free Multi-Profile Browser for Windows">
+<meta property="og:description" content="Unlimited browser profiles with unique fingerprints and per-profile proxies. Free alternative to Multilogin, GoLogin and AdsPower.">
+<meta property="og:url" content="https://ardibirawinata.github.io/Anti-detect-browser/">
+<meta property="og:image" content="https://ardibirawinata.github.io/Anti-detect-browser/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Privacy Browser — Anti Detect Browser",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "BrowserApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "downloadUrl": "https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest",
+  "softwareVersion": "1.0.0",
+  "author": {"@type": "Person", "name": "Ardi Birawinata", "url": "https://github.com/Ardibirawinata"},
+  "description": "Free anti-detect browser for Windows with unlimited profiles, unique fingerprints and per-profile proxies."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is an anti-detect browser?",
+     "acceptedAnswer": {"@type": "Answer", "text": "A browser that gives every profile its own fingerprint, cookies and proxy, so websites cannot tell that multiple profiles belong to the same person or computer."}},
+    {"@type": "Question", "name": "Is Privacy Browser free?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. There are no profile limits, subscriptions or accounts."}},
+    {"@type": "Question", "name": "Does it need Google Chrome?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. It uses Google Chrome if installed, otherwise Microsoft Edge, which is built into Windows 10 and 11."}},
+    {"@type": "Question", "name": "Which proxies are supported?",
+     "acceptedAnswer": {"@type": "Answer", "text": "HTTP, HTTPS, SOCKS4 and SOCKS5, with or without username and password."}}
+  ]
+}
+</script>
+
+<style>
+:root {
+  --bg: #f7f8fb; --surface: #ffffff; --text: #141821; --muted: #5b6475;
+  --border: #e3e6ee; --accent: #2b6ef2; --accent-text: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1117; --surface: #161b24; --text: #e8ebf2; --muted: #9aa3b5;
+    --border: #262d3a; --accent: #5b8ff9; --accent-text: #0e1117;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1117; --surface: #161b24; --text: #e8ebf2; --muted: #9aa3b5;
+  --border: #262d3a; --accent: #5b8ff9; --accent-text: #0e1117;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+header { padding: 56px 0 40px; text-align: center; }
+header img { width: 88px; height: 88px; }
+h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 16px 0 12px; }
+.lead { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0 auto 28px; }
+.btn {
+  display: inline-block; background: var(--accent); color: var(--accent-text);
+  padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 600;
+}
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); margin-left: 8px; }
+.note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+section { padding: 32px 0; }
+h2 { font-size: 26px; margin: 0 0 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.card h3 { margin: 0 0 6px; font-size: 17px; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+ol li { margin-bottom: 6px; }
+details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; }
+summary { cursor: pointer; font-weight: 600; }
+details p { color: var(--muted); margin: 8px 0 0; }
+footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; text-align: center; }
+a { color: var(--accent); }
+@media (max-width: 480px) { .btn.ghost { margin: 10px 0 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.png" alt="Privacy Browser anti detect browser logo">
+    <h1>Free Anti Detect Browser for Windows</h1>
+    <p class="lead">Run unlimited isolated browser profiles at the same time. Each profile gets a unique fingerprint and its own cookies and proxy, so every profile looks like a different device. A free alternative to Multilogin, GoLogin and AdsPower.</p>
+    <a class="btn" href="https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest">Download for Windows</a>
+    <a class="btn ghost" href="https://github.com/Ardibirawinata/Anti-detect-browser">View on GitHub</a>
+    <p class="note">Free · Windows 10/11 64-bit · No Python or extra software needed</p>
+  </header>
+
+  <section>
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="card"><h3>Unlimited browser profiles</h3><p>Cookies, logins, history and extensions are kept separate for every profile.</p></div>
+      <div class="card"><h3>Unique browser fingerprint</h3><p>Canvas, WebGL, audio, screen resolution, CPU, RAM, language and timezone per profile.</p></div>
+      <div class="card"><h3>Proxy per profile</h3><p>HTTP, HTTPS, SOCKS4 and SOCKS5, including SOCKS5 with username and password.</p></div>
+      <div class="card"><h3>Automatic geo sync</h3><p>Timezone, language and GPS location match the proxy IP's country.</p></div>
+      <div class="card"><h3>WebRTC leak protection</h3><p>Your real IP address is not exposed through WebRTC.</p></div>
+      <div class="card"><h3>Bulk create</h3><p>Paste a proxy list and get one profile with a random fingerprint for each proxy.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Use cases</h2>
+    <div class="grid">
+      <div class="card"><h3>Multi-account management</h3><p>Social media, e-commerce and ad accounts that stay unlinked.</p></div>
+      <div class="card"><h3>Affiliate &amp; airdrops</h3><p>Separate identities for every campaign or wallet.</p></div>
+      <div class="card"><h3>Scraping &amp; QA testing</h3><p>Test websites with different fingerprints and IP addresses.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to get started</h2>
+    <ol>
+      <li>Download <strong>PrivacyBrowser-Setup.exe</strong> from the <a href="https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest">releases page</a>.</li>
+      <li>Run it → Next → Finish. No admin rights required.</li>
+      <li>Create a profile, paste a proxy (optional), and open the browser.</li>
+    </ol>
+    <p class="note">Seeing "Windows protected your PC"? Click <strong>More info → Run anyway</strong>. The installer is not yet code-signed.</p>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <details><summary>What is an anti-detect browser?</summary><p>A browser that gives every profile its own fingerprint, cookies and proxy, so websites cannot tell that multiple profiles belong to the same person or computer.</p></details>
+    <details><summary>Is it free?</summary><p>Yes. There are no profile limits, subscriptions or accounts.</p></details>
+    <details><summary>Does it need Google Chrome?</summary><p>No. It uses Google Chrome if installed, otherwise Microsoft Edge, which is built into Windows 10 and 11.</p></details>
+    <details><summary>Which proxies are supported?</summary><p>HTTP, HTTPS, SOCKS4 and SOCKS5, with or without username and password.</p></details>
+    <details><summary>Where is my data stored?</summary><p>Locally on your computer. Proxy passwords are encrypted with Windows DPAPI.</p></details>
+  </section>
+
+  <footer>
+    Made by <a href="https://github.com/Ardibirawinata">Ardi Birawinata</a> ·
+    <a href="https://github.com/Ardibirawinata/Anti-detect-browser">Source on GitHub</a>
+  </footer>
+</div>
+</body>
+</html>

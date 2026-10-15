@@ -1,12 +1,27 @@
-# Anti Detect Browser
+# Anti Detect Browser — Free Multi-Profile Browser for Windows
 
-**Privacy Browser** is a Windows app for running **many isolated browsers at the same time**. Each profile has its own:
+[![Download](https://img.shields.io/github/v/release/Ardibirawinata/Anti-detect-browser?label=Download&style=for-the-badge)](https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest)
+![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-blue?style=for-the-badge)
+![Price](https://img.shields.io/badge/price-free-brightgreen?style=for-the-badge)
+
+**Privacy Browser** is a **free anti-detect browser** for Windows. Run **many isolated browser profiles at the same time**, each with its own browser fingerprint, cookies, and proxy, so websites see every profile as a different device. A free alternative to **Multilogin, GoLogin, AdsPower, Dolphin Anty, and Incogniton** for managing multiple accounts.
+
+Website: **https://ardibirawinata.github.io/Anti-detect-browser/**
+
+Each profile has its own:
 
 - **Data**: cookies, logins, history, and extensions are never shared between profiles
 - **Unique, persistent fingerprint**: canvas, WebGL (graphics card), audio, screen resolution, CPU cores, RAM, language, and timezone
 - **Proxy**: HTTP, HTTPS, SOCKS4, SOCKS5, including SOCKS5 with username/password
 - **Automatic proxy sync**: timezone, language, and GPS location are matched to the proxy IP's country
 - **WebRTC leak protection**: your real IP is not leaked through WebRTC
+
+## Use cases
+
+- Managing multiple social media, e-commerce, or ad accounts without them being linked
+- Affiliate marketing, airdrops, and multi-account workflows
+- Web scraping and QA testing with different fingerprints and IP addresses
+- Keeping work, personal, and client browsing fully separated
 
 ## Download
 
@@ -75,6 +90,26 @@ Build output:
 - The fingerprint is spoofed in pages and iframes. Web Workers and Service Workers still see real values for CPU, OffscreenCanvas, and similar.
 - The CSS `device-width` media query still uses the real monitor resolution.
 - The User-Agent is left as the real one by default. Changing it manually may make the UA mismatch Client Hints (`Sec-CH-UA`).
+
+## FAQ
+
+**What is an anti-detect browser?**
+A browser that gives every profile its own fingerprint (canvas, WebGL, audio, screen, timezone, etc.) and its own cookies and proxy, so websites cannot tell that multiple profiles belong to the same person or computer.
+
+**Is it free?**
+Yes. There are no profile limits, subscriptions, or accounts.
+
+**How many profiles can I create?**
+Unlimited. Use **Buat banyak** (Bulk create) to create dozens of profiles from a proxy list at once.
+
+**Does it need Chrome?**
+No. It uses Google Chrome if installed, otherwise Microsoft Edge, which is built into Windows 10/11.
+
+**Which proxies are supported?**
+HTTP, HTTPS, SOCKS4, and SOCKS5 (with or without username/password).
+
+**Is my data sent anywhere?**
+No. All profiles are stored locally on your computer, and proxy passwords are encrypted with Windows DPAPI. The only outside requests the app makes are proxy checks (to ipinfo.io / ip-api.com) to detect the proxy's IP, country, and timezone.
 
 ## Author
 
