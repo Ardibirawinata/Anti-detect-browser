@@ -1,80 +1,80 @@
 # Anti Detect Browser
 
-**Privacy Browser** adalah aplikasi Windows untuk menjalankan **banyak browser terpisah sekaligus**. Setiap profil punya:
+**Privacy Browser** is a Windows app for running **many isolated browsers at the same time**. Each profile has its own:
 
-- **Data sendiri**: cookie, login, riwayat, dan ekstensi tidak tercampur antarprofil
-- **Fingerprint unik yang tetap**: canvas, WebGL (kartu grafis), audio, resolusi layar, jumlah CPU, RAM, bahasa, dan zona waktu
-- **Proxy sendiri**: HTTP, HTTPS, SOCKS4, SOCKS5, termasuk SOCKS5 dengan username/password
-- **Sinkron otomatis dengan proxy**: zona waktu, bahasa, dan lokasi GPS disamakan dengan negara IP proxy
-- **Perlindungan kebocoran WebRTC**: IP asli tidak bocor lewat WebRTC
+- **Data**: cookies, logins, history, and extensions are never shared between profiles
+- **Unique, persistent fingerprint**: canvas, WebGL (graphics card), audio, screen resolution, CPU cores, RAM, language, and timezone
+- **Proxy**: HTTP, HTTPS, SOCKS4, SOCKS5, including SOCKS5 with username/password
+- **Automatic proxy sync**: timezone, language, and GPS location are matched to the proxy IP's country
+- **WebRTC leak protection**: your real IP is not leaked through WebRTC
 
 ## Download
 
-Unduh installer terbaru di halaman **[Releases](https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest)** → `PrivacyBrowser-Setup.exe`.
+Get the latest installer from the **[Releases](https://github.com/Ardibirawinata/Anti-detect-browser/releases/latest)** page → `PrivacyBrowser-Setup.exe`.
 
-Syarat: Windows 10/11 64-bit. Tidak perlu memasang Python atau aplikasi lain.
+Requirements: Windows 10/11 64-bit. No need to install Python or any other software.
 
-## Untuk pengguna
+## For users
 
-1. Jalankan `PrivacyBrowser-Setup.exe` → Next → Selesai. Tidak perlu hak admin dan tidak perlu memasang aplikasi lain.
-2. Klik **➕ Profil baru**, beri nama, lalu tempel proxy di tab **Proxy** (opsional) → **Simpan**.
-3. Klik dua kali profil atau tekan **▶ Buka browser**.
+1. Run `PrivacyBrowser-Setup.exe` → Next → Finish. No admin rights or extra software required.
+2. Click **➕ Profil baru** (New profile), give it a name, then paste a proxy in the **Proxy** tab (optional) → **Simpan** (Save).
+3. Double-click the profile or press **▶ Buka browser** (Open browser).
 
-Format proxy yang bisa langsung ditempel:
+Supported proxy formats (paste as-is):
 
 ```
 1.2.3.4:8080
 1.2.3.4:8080:user:pass
 socks5://user:pass@1.2.3.4:1080
-http://user:pass@proxy.contoh.com:3128
+http://user:pass@proxy.example.com:3128
 ```
 
-**Buat banyak** membuat puluhan profil sekaligus. Tempel daftar proxy (satu per baris), dan setiap proxy otomatis mendapat profil dengan fingerprint acak.
+**Buat banyak** (Bulk create) creates dozens of profiles at once. Paste a list of proxies (one per line) and each proxy automatically gets its own profile with a random fingerprint.
 
-Browser yang dipakai: **Google Chrome** kalau terpasang. Kalau tidak ada, dipakai **Microsoft Edge**, yang selalu tersedia di Windows 10/11.
+Browser used: **Google Chrome** if installed. Otherwise **Microsoft Edge**, which is always available on Windows 10/11.
 
-Data profil tersimpan di `%LOCALAPPDATA%\PrivacyBrowser\data` dan tidak ikut terhapus saat uninstall. Password proxy dienkripsi dengan Windows DPAPI, terikat ke akun Windows Anda.
+Profile data is stored in `%LOCALAPPDATA%\PrivacyBrowser\data` and is kept when uninstalling. Proxy passwords are encrypted with Windows DPAPI, tied to your Windows account.
 
-Mode portable: taruh file kosong bernama `portable` di samping `PrivacyBrowser.exe`, maka data disimpan di folder `data\` di sebelahnya.
+Portable mode: place an empty file named `portable` next to `PrivacyBrowser.exe`, and data will be stored in a `data\` folder beside it.
 
-Diagnosa: `PrivacyBrowser.exe --selftest` membuka browser uji dan menulis hasilnya ke `selftest.log` di folder data.
+Diagnostics: `PrivacyBrowser.exe --selftest` opens a test browser and writes the result to `selftest.log` in the data folder.
 
-> Muncul "Windows protected your PC"? Klik **More info → Run anyway**. Ini terjadi karena EXE belum ditandatangani dengan sertifikat code-signing.
+> Seeing "Windows protected your PC"? Click **More info → Run anyway**. This happens because the EXE is not yet signed with a code-signing certificate.
 
-## Untuk developer
+## For developers
 
 ```bash
 pip install -r requirements.txt
 python main.py
 ```
 
-Build EXE + installer:
+Build the EXE + installer:
 
 ```bash
 build.bat
 ```
 
-Hasil build:
-- `dist\PrivacyBrowser\`: versi portable (bisa di-zip)
-- `installer\PrivacyBrowser-Setup.exe`: hanya dibuat jika [Inno Setup 6](https://jrsoftware.org/isinfo.php) terpasang (`winget install JRSoftware.InnoSetup`)
+Build output:
+- `dist\PrivacyBrowser\`: portable version (can be zipped)
+- `installer\PrivacyBrowser-Setup.exe`: only created if [Inno Setup 6](https://jrsoftware.org/isinfo.php) is installed (`winget install JRSoftware.InnoSetup`)
 
-### Struktur
+### Structure
 
-| File | Isi |
+| File | Contents |
 |---|---|
-| `privacy_browser/gui.py` | Antarmuka Tkinter (daftar profil, dialog edit, buat banyak) |
-| `privacy_browser/engine.py` | Meluncurkan banyak browser paralel via Patchright (fork Playwright anti-deteksi, asyncio) |
-| `privacy_browser/stealth.js` | Script pemalsu fingerprint yang disuntikkan ke setiap frame |
-| `privacy_browser/fingerprint.py` | Generator fingerprint realistis + pemetaan negara → bahasa |
-| `privacy_browser/socks_relay.py` | Relay lokal agar Chromium bisa memakai SOCKS5 dengan login |
-| `privacy_browser/proxy_check.py` | Tes proxy: IP keluar, negara, zona waktu |
-| `privacy_browser/models.py` | Data profil, parser proxy, penyimpanan JSON |
+| `privacy_browser/gui.py` | Tkinter interface (profile list, edit dialog, bulk create) |
+| `privacy_browser/engine.py` | Launches many browsers in parallel via Patchright (anti-detection Playwright fork, asyncio) |
+| `privacy_browser/stealth.js` | Fingerprint spoofing script injected into every frame |
+| `privacy_browser/fingerprint.py` | Realistic fingerprint generator + country → language mapping |
+| `privacy_browser/socks_relay.py` | Local relay so Chromium can use SOCKS5 with authentication |
+| `privacy_browser/proxy_check.py` | Proxy test: exit IP, country, timezone |
+| `privacy_browser/models.py` | Profile data, proxy parser, JSON storage |
 
-### Batasan yang diketahui
+### Known limitations
 
-- Fingerprint dipalsukan di halaman dan iframe. Web Worker dan Service Worker masih melihat nilai asli untuk CPU, canvas di OffscreenCanvas, dan sejenisnya.
-- Media query CSS `device-width` masih memakai resolusi monitor asli.
-- User-Agent dibiarkan asli secara default. Mengubahnya secara manual bisa membuat UA tidak cocok dengan Client Hints (`Sec-CH-UA`).
+- The fingerprint is spoofed in pages and iframes. Web Workers and Service Workers still see real values for CPU, OffscreenCanvas, and similar.
+- The CSS `device-width` media query still uses the real monitor resolution.
+- The User-Agent is left as the real one by default. Changing it manually may make the UA mismatch Client Hints (`Sec-CH-UA`).
 
 ## Author
 
